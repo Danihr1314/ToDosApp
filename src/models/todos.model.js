@@ -1,6 +1,7 @@
 const db = require('../utils/database');
 
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
+const Users = require('./users.model');
 
 const Todos = db.define('todos', {
   id: {
@@ -16,8 +17,19 @@ const Todos = db.define('todos', {
   description: {
     type: DataTypes.STRING,
   },
-  is_complete: {
+  isComplete: {
     type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    field: 'is_complete',
+  },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'user_id',
+    references: {
+      model: Users,
+      key: 'id',
+    }
   },
 });
 
