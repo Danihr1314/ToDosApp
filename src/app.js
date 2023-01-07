@@ -1,6 +1,7 @@
 const express = require('express');
 const initModels = require('./models/init.model');
 const Users = require('./models/users.model');
+const Todos = require('./models/todos.model');
 const db = require('./utils/database');
 
 const app = express();
@@ -88,7 +89,68 @@ app.delete('/users/:id', async (req, res) => {
     const result = await Users.destroy({
       where: { id }
     });
-    res.status(200).json(resutl);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+})
+
+
+//TODOS---------------------------------------------------------------------------------
+//get all ToDos
+app.get('/todos', async (req, res) => {
+  try {
+    const result = await Todos.findAll();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+})
+
+//get ToDo by ID
+app.get('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await Todos.findByPk(id);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+})
+
+//create ToDo
+app.post('/todos', async (req, res) => {
+  try {
+    const todo = req.body;
+    const result = await Todos.create(todo);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+})
+
+//update ToDo
+app.put('/todos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const field = req.body;
+    const result = await Todos.update(field, {
+      where: { id }
+    });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+})
+
+//delete ToDO
+app.delete('/todos/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const result = await Todos.destroy({
+      where:{id}
+    });
+    res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error.message);
   }
