@@ -5,11 +5,13 @@ const Todos = require('./models/todos.model');
 const db = require('./utils/database');
 
 const userRoutes = require('./routes/users.routes');
+const todosRoutes = require('./routes/todos.routes');
 
 const app = express();
 
 app.use(express.json());
 app.use('/api/v1', userRoutes);
+app.use('/api/v1', todosRoutes);
 
 const PORT = 8000;
 

@@ -1,45 +1,47 @@
-const Users = require('../models/users.model');
+const Todos = require('../models/todos.model');
 
-class UserServices {
+class TodosServices {
   static async getAll() {
     try {
-      const result = await Users.findAll();
+      const result = await Todos.findAll();
       return result;
     } catch (error) {
-      throw (error);
+      throw error;
     }
   }
 
   static async getById(id) {
     try {
-      const result = await Users.findByPk(id);
+      const result = await Todos.findByPk(id);
       return result;
     } catch (error) {
       throw error;
     }
   }
 
-  static async create(user) {
+  static async create(todo) {
     try {
-      const result = await Users.create(user)
+      const result = await Todos.create(todo);
       return result;
     } catch (error) {
       throw error;
     }
   }
+
   static async update(id, field) {
     try {
-      const result = await Users.update(field, {
+      const result = await Todos.update(field, {
         where: { id }
       });
-      return result;
+      return result
     } catch (error) {
       throw error;
     }
   }
+
   static async delete(id) {
     try {
-      const result = await Users.destroy({
+      const result = await Todos.destroy({
         where: { id }
       });
       return result;
@@ -49,4 +51,4 @@ class UserServices {
   }
 }
 
-module.exports = UserServices;
+module.exports = TodosServices;
