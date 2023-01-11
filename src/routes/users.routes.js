@@ -3,7 +3,8 @@ const { getAllUsers,
   getUserById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getUserTasks
 } = require('../controllers/users.controller');
 
 const router = Router();
@@ -11,6 +12,8 @@ const router = Router();
 router.get('/users', getAllUsers);
 
 router.get('/users/:id', getUserById);
+
+router.get('/users/:id/tasks', getUserTasks);
 
 router.post('/users', createUser);
 

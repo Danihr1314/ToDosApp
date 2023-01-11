@@ -104,14 +104,14 @@ app.get('/', (req, res) => {
 
 //TODOS---------------------------------------------------------------------------------
 //get all ToDos
-/* app.get('/todos', async (req, res) => {
+/*  app.get('/todos', async (req, res) => {
   try {
     const result = await Todos.findAll();
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error.message);
   }
-}) */
+})  */
 
 //get ToDo by ID
 /* app.get('/todos/:id', async (req, res) => {
