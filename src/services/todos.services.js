@@ -63,7 +63,7 @@ class TodosServices {
           include: {
             model: Categories,
             as: "category"
-          }
+          } 
         }
       });
       return result;

@@ -1,17 +1,21 @@
 const express = require('express');
 const initModels = require('./models/init.model');
-const Users = require('./models/users.model');
-const Todos = require('./models/todos.model');
 const db = require('./utils/database');
+const cors = require('cors');
 
 const userRoutes = require('./routes/users.routes');
 const todosRoutes = require('./routes/todos.routes');
+const authRoutes = require('./routes/auth.routes');
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
+//Routes---------------
 app.use('/api/v1', userRoutes);
 app.use('/api/v1', todosRoutes);
+app.use('/api/v1', authRoutes);
 
 const PORT = 8000;
 
@@ -31,4 +35,3 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor activo en el puerto ${PORT}`)
 });
-
