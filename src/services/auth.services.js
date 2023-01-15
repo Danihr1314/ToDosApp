@@ -1,16 +1,15 @@
-const Users = require('../models/users.model');
+const Users = require("../models/users.model");
 
 class AuthService {
   static async login(email, password) {
     try {
       const result = await Users.findOne({
-        where: { email }
+        where: { email },
       });
       if (result) {
-        // console.log(password,result.password);
-        return password === result.password 
-          ? { isValid: true, result } 
-          : { isValid: false }
+        return password === result.password
+          ? { isValid: true, result }
+          : { isValid: false };
       }
       return { isValid: false };
     } catch (error) {
