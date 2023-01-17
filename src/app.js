@@ -3,6 +3,8 @@ const initModels = require("./models/init.model");
 const db = require("./utils/database");
 const cors = require("cors");
 
+console.log(process.env);
+
 const userRoutes = require("./routes/users.routes");
 const todosRoutes = require("./routes/todos.routes");
 const authRoutes = require("./routes/auth.routes");
