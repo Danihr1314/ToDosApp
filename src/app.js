@@ -2,8 +2,9 @@ const express = require("express");
 const initModels = require("./models/init.model");
 const db = require("./utils/database");
 const cors = require("cors");
+require("dotenv").config();
 
-console.log(process.env);
+console.log(process.env.PORT);
 
 const userRoutes = require("./routes/users.routes");
 const todosRoutes = require("./routes/todos.routes");
@@ -19,7 +20,7 @@ app.use("/api/v1", userRoutes);
 app.use("/api/v1", todosRoutes);
 app.use("/api/v1", authRoutes);
 
-const PORT = 8000;
+const PORT = process.env.PORT;
 
 db.authenticate()
   .then(() => console.log("Autenticacion exitosa"))
